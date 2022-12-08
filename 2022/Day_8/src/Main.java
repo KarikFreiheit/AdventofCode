@@ -25,8 +25,9 @@ public class Main {
         for(int i = 0; i < list.size() - 1; i++){
             String k =  list.get(i);
             for(int j = 0; j < k.length(); j++){
-                trees[i][j] = k.charAt(j);
+                trees[i][j] = Character.getNumericValue(k.charAt(j));
                 System.out.print( trees[i][j]);
+                visible += checkVisibility(trees, i, j);
             }
             System.out.println();
 
@@ -37,5 +38,23 @@ public class Main {
 
 
 
+    }
+
+
+    public static int checkVisibility(int[][] trees, int i, int j){
+        //Check above
+        if(trees[i+1][j] > trees[i][j]){
+            return 0;
+        }
+        //Check below
+        if(trees[i-1][j] > trees[i][j]){
+            return 0;
+        }
+        //Check left
+        if(trees[i+1][j] > trees[i][j]){
+            return 0;
+        }
+        //Check right
+        return 1;
     }
 }
